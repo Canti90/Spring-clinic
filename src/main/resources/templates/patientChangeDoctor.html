@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Info about added patient</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Current patient card</h1>
+<form action="#" th:action="@{/patientChangeDoctor}" th:object="${patient}" method="post">
+    <p>Id: <input type="text" th:field="*{id}" th:disabled="true" /></p>
+<!--    <p>DocId: <input type="text" th:field="*{doctorId}" /></p>-->
+    <p>Firstname: <input type="text" th:field="*{firstName}" /></p>
+    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>
+    <p>Surname: <input type="text" th:field="*{surName}" /></p>
+    <td th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}">Name Error</td>
+
+
+<p>Doctor: <select class="form-control" th:field="*{doctorId}"  id="dropOperator">
+<!--    <option value="0">Select Doctor</option>-->
+    <option th:each="doc : ${doctors}" th:value="${doc.getId()}" th:text="${doc.getName()}"></option>
+</select> </p>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<a href="/administrator">Admin page</a>
+</body>
+</html>

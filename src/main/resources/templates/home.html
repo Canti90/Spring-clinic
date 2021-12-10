@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<style>
+    div {
+        border: 1px solid black; /* Параметры рамки */
+        padding: 5px; /* Поля вокруг текста */
+        margin-bottom: 5px; /* Отступ снизу */
+    }
+    #left { text-align: left; }
+    #right { text-align: right; }
+    #center { text-align: center; }
+    .content {
+        width: 75%; /* Ширина слоя */
+        background: #fc0; /* Цвет фона */
+    }
+</style>
+<body>
+<div id="center">
+<h1>Welcome!</h1>
+<p>Click <a th:href="@{/addnewpatient}">here</a> to add new patient.</p>
+    <p>Click <a th:href="@{/administrator}">here</a> to manage doctors.</p>
+
+
+</div>
+</body>
+</html>

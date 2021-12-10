@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<style>
+    div {
+        border: 1px solid black; /* Параметры рамки */
+        padding: 5px; /* Поля вокруг текста */
+        margin-bottom: 5px; /* Отступ снизу */
+    }
+
+    #left { padding: 50px;}
+    #right { text-align: right; }
+    #center { text-align: center; }
+    .content {
+        width: 75%; /* Ширина слоя */
+        background: #fc0; /* Цвет фона */
+    }
+</style>
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<logout id="left">
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</logout>
+
+<div id="center">
+<h1>Add patients</h1>
+<form action="#" th:action="@{/addnewpatient}" th:object="${patient}" method="post">
+    <!-- <p>Id: <input type="text" th:field="*{id}" /></p> -->
+    <p>Firstname: <input type="text" th:field="*{firstName}" /></p>
+    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>
+    <p>Surname: <input type="text" th:field="*{surName}" /></p>
+    <td th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}">Name Error</td>
+    <p>Doctor: <select class="form-control" th:field="*{doctorId}"  id="dropOperator">
+        <option value="0">Select Doctor</option>
+        <option th:each="doc : ${doctors}" th:value="${doc.getId()}" th:text="${doc.getName()}"></option>
+    </select> </p>
+    <p> <input type="date" th:field="*{date}"></p>
+
+
+
+    <p><input type="submit" value="Submit"> <input type="reset" value="Reset" /></p>
+</form>
+    <p>Click <a th:href="@{/administrator}">here</a> to manage doctors.</p>
+<a href="http://localhost:8080/all">Patients list</a>
+<a href="http://localhost:8080/allbydoctor">Patients by doctor</a>
+</div>
+</body>
+</html>
