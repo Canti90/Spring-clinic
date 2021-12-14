@@ -66,4 +66,9 @@ public class Patient {
     public int getDoctorId() {
         return doctorId;
     }
+
+    public String patientInfo(){
+      String result = "id:" + this.id + " name:" + this.firstName + " surname:" + this.surName + " docId:" + this.doctorId + " date:" + this.date;
+      return  result;
+    };
 }

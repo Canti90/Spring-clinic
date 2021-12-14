@@ -18,7 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/addnewpatinet", "/home").hasRole("USER")
+                .antMatchers("/patientByDoctor", "/administrator", "/patientChangeDoctor").hasRole("MANAGER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

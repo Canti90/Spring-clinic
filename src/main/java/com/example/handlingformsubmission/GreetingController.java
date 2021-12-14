@@ -4,7 +4,6 @@ package com.example.handlingformsubmission;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +25,7 @@ public class GreetingController {
     private static final Logger LOGGER = LogManager.getLogger(GreetingController.class);
 
 
+
     @GetMapping("/administrator")
     public String adminPage(Model model) {
 
@@ -36,9 +36,7 @@ public class GreetingController {
         ) {
            list.put(doc, patientRepository.countByDoctorId(doc.getId()));
         }
-        LOGGER.warn("warn level log message");
-        LOGGER.warn("Warn level log message");
-        LOGGER.error("Error level log message");
+        LOGGER.error("error test message");
 
         model.addAttribute("list", list);
         model.addAttribute("doctors", doctors);
@@ -122,6 +120,7 @@ public class GreetingController {
         model.addAttribute("patient", patient);
         System.out.println(patient.getDate());
         patientRepository.save(patient);
+        LOGGER.info("Patient created: " + patient.patientInfo());
         return "result";
     }
 
@@ -152,7 +151,16 @@ public class GreetingController {
     @PostMapping("/patientChangeDoctor")
     public String patientChangeDoctorSubmit(Patient patient, Model model){
 
+        Patient p = patientRepository.findById(patient.getId()).orElse(new Patient());
+        LOGGER.info("Changing patient data from: " + p.patientInfo());
+
+        patient.setDate(p.getDate());
+
         patientRepository.save(patient);
+
+        LOGGER.info("to " + patient.patientInfo());
+
+
 
         Iterable<Doctor> doctorIterable = doctorRepository.findAll();
         List<Doctor> doctors = new ArrayList<Doctor>();
