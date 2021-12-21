@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Edit</title>
+</head>
+<body>
+<form action="/user" method="post">
+    <input type="hidden" name="userId" th:value="${user.id}">
+    <input type="text" name="username" th:value="${user.username}">
+    <td th:each="role : ${roles}">
+        <div>
+        <input type="checkbox" th:name="${role}" th:checked="${#lists.contains(user.roles, role)}"a th:utext="${role}">
+        </div>
+         </td>
+    <input type="submit" name="Save" value="Save">
+
+</form>
+
+</body>
+</html>

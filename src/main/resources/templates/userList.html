@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+
+<tr th:each="user : ${users}">
+
+
+    <td><span th:text="${user.username}"></span></td>
+    <th:block th:each="role : ${user.roles}">
+        <div>
+            <div class="panel-body" th:text="${role}"></div>
+        </div>
+    </th:block>
+    <td><span  th:text="${user.active}"></span></td>
+    <td><span><a th:href="@{'user/'+${user.id}}">Link</a></span></td>
+
+</tr>
+
+</body>
+</html>
