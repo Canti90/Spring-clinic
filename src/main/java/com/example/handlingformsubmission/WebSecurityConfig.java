@@ -37,21 +37,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
         http.csrf().disable();
-        http
-                .authorizeRequests()
-                .antMatchers("/registration", "/user")
-                .permitAll()
-                .antMatchers("/addnewpatinet", "/home").hasRole("USER")
-                .antMatchers("/patientByDoctor", "/administrator", "/patientChangeDoctor").hasRole("MANAGER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .successHandler(new CustomAuthenticationHandler())
-                .and()
-                .logout()
-                .permitAll();
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/registration", "/user")
+//                .permitAll()
+//                .antMatchers("/addnewpatinet", "/home").hasRole("USER")
+//                .antMatchers("/patientByDoctor", "/administrator", "/patientChangeDoctor").hasRole("MANAGER")
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
+//                .successHandler(new CustomAuthenticationHandler())
+//                .and()
+//                .logout()
+//                .permitAll();
     }
 
 
