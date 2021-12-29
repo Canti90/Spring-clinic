@@ -198,20 +198,6 @@ public class GreetingController {
         return "patientChangeDoctor";
     }
 
-    @GetMapping(path="/all")
-    public @ResponseBody
-    Iterable<Patient> getAllUsers() {
-        // This returns a JSON or XML with the users
-        return patientRepository.findAll();
-    }
 
-//    @GetMapping(path="/allbydoctor")
-//    public @ResponseBody
-//    Map<String, List<Patient>> getAllpatients() {
-//        // This returns a JSON or XML with the users
-//        CollectionFromSQL collectionFromSQL = new CollectionFromSQL();
-//
-//        return collectionFromSQL.makeMap(doctorRepository,patientRepository);
-//    }
 
 }
