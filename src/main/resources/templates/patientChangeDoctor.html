@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Info about added patient</title>
+    <title>Info about added patients</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -20,7 +20,7 @@
     <option th:each="doc : ${doctors}" th:value="${doc.getId()}" th:text="${doc.getName()}"></option>
 </select> </p>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit"  >
 
 </form>
 

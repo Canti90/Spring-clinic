@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Administrator page</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="https://adminlte.io/themes/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="https://adminlte.io/themes/v3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="https://adminlte.io/themes/v3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css">
 </head>
 
-</head>
+
 <body>
 <logout id="left">
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
@@ -23,45 +29,63 @@
 </logout>
 
 <div class="card-body">
-    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
-        <thead>
-        <tr role="row">
-            <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Doctor</th>
-            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Number of patients</th>
-            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Link to patients</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+        <div class="row">
+            <div class="col-sm-12 col-md-6"></div>
+            <div class="col-sm-12 col-md-6"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid"
+                       aria-describedby="example2_info">
+                    <thead>
+                    <tr role="row">
+                        <th id="d" class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                            colspan="1" aria-sort="ascending"
+                            aria-label="Rendering engine: activate to sort column descending">Doctor
+                        </th>
+                        <th id="number" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                            aria-label="Browser: activate to sort column ascending">Number of patients
+                        </th>
+                        <th id="link" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                            aria-label="Platform(s): activate to sort column ascending">Link to patients
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-        <tr  class="odd" th:each="instance : ${list}">
-            <td class="dtr-control sorting_1" tabindex="0"><span th:text="${instance.key.getName()}"></span></td>
-            <td><span th:text="${instance.value}"></span></td>
-            <td><a th:href="@{'/patientByDoctor?id=' + ${instance.key.getId()}}">view</a></td>
-        </tr>
+                    <tr class="odd" th:each="instance : ${list}">
+                        <td class="dtr-control sorting_1" tabindex="0"><span th:text="${instance.key.getName()}"></span>
+                        </td>
+                        <td><span th:text="${instance.value}"></span></td>
+                        <td><a th:href="@{'/patientByDoctor?id=' + ${instance.key.getId()}}">view</a></td>
+                    </tr>
 
-</tbody>
-        <tfoot>
-        <tr>
-            <th rowspan="1" colspan="1">Doctor</th>
-            <th rowspan="1" colspan="1">Number of patients</th>
-            <th rowspan="1" colspan="1">Link to patients</th>
-<!--            <th rowspan="1" colspan="1">Engine version</th>-->
-<!--            <th rowspan="1" colspan="1">CSS grade</th></tr>-->
-        </tfoot>
-    </table>
-</div><div class="card-body" align="center">
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th rowspan="1" colspan="1">Doctor</th>
+                        <th rowspan="1" colspan="1">Number of patients</th>
+                        <th rowspan="1" colspan="1">Link to patients</th>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="card-body" align="center">
 
-    <p> Enter doctor surname and choose press Save or Delete:</p>
-    <form action="#" th:action="@{/administrator}" th:object="${doctor}" method="post">
+                <p> Enter doctor surname and choose press Save or Delete:</p>
+                <form action="#" th:action="@{/administrator}" th:object="${doctor}" method="post">
 
-        <p>Surname: <input type="text" th:field="*{name}" /></p>
-        <p><input type="Submit" name="save" value="save" /> <input type="Submit" name="delete" value="delete" /></p>
-    </form>
-    <p>Click <a th:href="@{/addnewpatient}">here</a> to add new patient.</p>
-    <p>Click <a th:href="@{/administrator}">here</a> to manage doctors.</p>
+                    <p>Surname: <input type="text" th:field="*{name}"/></p>
+                    <p><input type="Submit" name="save" value="save"/> <input type="Submit" name="delete"
+                                                                              value="delete"/></p>
+                </form>
+                <p>Click <a th:href="@{/addnewpatient}">here</a> to add new patient.</p>
+                <p>Click <a th:href="@{/administrator}">here</a> to manage doctors.</p>
 
+            </div>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
 
