@@ -1,6 +1,7 @@
-package com.example.handlingformsubmission;
+package com.example.handlingformsubmission.controller;
 
 //import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.example.handlingformsubmission.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
