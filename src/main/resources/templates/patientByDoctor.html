@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Patients list</title>
@@ -50,11 +50,15 @@
             <th rowspan="1" colspan="1">Modify</th>
         </tfoot>
     </table>
-</div>
+
+    </div>
+    </div>
 
 <div class="card-body" align="center">
 <p>Click <a th:href="@{/addnewpatient}">here</a> to add new patient.</p>
 <p>Click <a th:href="@{/administrator}">here</a> to manage doctors.</p>
+</div>
+    </div>
 </div>
 </body>
 </html>

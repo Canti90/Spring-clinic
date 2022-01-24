@@ -61,7 +61,6 @@ public class GreetingController {
         ) {
            list.put(doc, patientRepository.countByDoctorId(doc.getId()));
         }
-        LOGGER.error("error test message");
 
         model.addAttribute("list", list);
         model.addAttribute("doctors", doctors);
@@ -150,7 +149,7 @@ public class GreetingController {
     }
 
     @RequestMapping("/patientByDoctor")
-    public String greeting2(@RequestParam String id, Model model) {
+    public String greeting2(@RequestParam(defaultValue = "0") String id, Model model) {
         int i = Integer.parseInt(id);
         List<Patient> listByDoctorId = patientRepository.listByDoctorId(i);
         model.addAttribute("listByDoctorId", listByDoctorId);
@@ -158,7 +157,7 @@ public class GreetingController {
     }
 
     @GetMapping("/patientChangeDoctor")
-    public String patientChangeDoctor(@RequestParam String id, Model model){
+    public String patientChangeDoctor(@RequestParam(defaultValue = "0") String id, Model model){
         int i = Integer.parseInt(id);
         Patient p = patientRepository.findById(i).orElse(new Patient());
 
